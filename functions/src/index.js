@@ -2,7 +2,7 @@ import fileUpload from 'express-fileupload';
 import tmp from 'tmp';
 import insert from './insert';
 
-export default function (req, res) {
+export default async function (req, res) {
   tmp.file(function (err, path, descriptor, clean) {
     // throw error getting temporary file path
     if (err) throw err;

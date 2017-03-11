@@ -1,5 +1,9 @@
+// require express to act as Firebase server
 const express = require('express');
+// require local app middleware
 const func = require('./src').default;
-const app = express();
-app.use(func);
-app.listen(8080);
+// create app
+const server = express();
+// enable express server
+server.use(func);
+server.listen(8080);
