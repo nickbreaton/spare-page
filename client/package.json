@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "mkdir -p dist; cp src/* dist",
+    "prebuild": "npm run clean",
+    "clean": "rimraf dist",
+    "predeploy": "npm run build",
+    "deploy": "firebase deploy --only hosting"
+  },
+  "devDependencies": {
+    "firebase-tools": "^3.5.0",
+    "rimraf": "^2.6.1"
+  }
+}
