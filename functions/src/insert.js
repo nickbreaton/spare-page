@@ -1,13 +1,11 @@
 import hummus from 'hummus';
 
-export default (req, res) => function () {
-  // const input = req.files.file;
-
+export default function (path, res) {
   // set HTTP response type
   res.contentType('application/pdf');
 
 
-  const parser = hummus.createReader('/Users/nick/Desktop/input.pdf');
+  const parser = hummus.createReader(path);
 
   // create array to hold dimensions
   const boxes = [];
@@ -25,7 +23,7 @@ export default (req, res) => function () {
     const page = writer.createPage(...boxes[dimIndex]);
 
     if (i % 2 === 0) {
-      writer.mergePDFPagesToPage(page, '/Users/nick/Desktop/input.pdf', {
+      writer.mergePDFPagesToPage(page, path, {
         type: hummus.eRangeTypeSpecific,
         specificRanges:[ [i / 2, i / 2] ]
       });
