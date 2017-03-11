@@ -2,16 +2,19 @@ import createTemp from './create-temp';
 import insertPages from './insert-pages';
 import middleware from './middleware';
 import saveUpload from './save-upload';
+import validateRequest from './validate-request';
 
 export default async function (req, res) {
-  // set content type of response
-  res.contentType('application/pdf');
   // include express middleware
-  await parseMiddleware(req, res);
+  await middleware(req, res);
   // fetch a temporary file
   const [ path, clean ] = await createTemp();
+  // exit on failed validation
+  if (!validateRequest(req, res)) return;
   // save PDF as temporary file
   await saveUpload(req.files.document, path);
+  // set content type of response
+  res.contentType('application/pdf');
   // insert blank pages between each page
   insertPages(path, res);
   // clean up temporary files
