@@ -5,7 +5,7 @@ const Content = styled.main`
   cursor: pointer;
   display: flex;
   flex-grow: 1;
-  div {
+  & > div {
     background: none !important;
     border: none !important;
     height: initial !important;

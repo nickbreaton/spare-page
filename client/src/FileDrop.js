@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
-import Dropzone from 'react-dropzone'
 import download from 'downloadjs'
+import Dropzone from 'react-dropzone'
+import Progress from './Progress'
+import React, { Component } from 'react'
+import request from 'superagent'
 
 class FileDrop extends Component {
   constructor() {
     super()
     this.upload = this.upload.bind(this)
     this.state = {
-      lock: false
+      lock: false,
+      upload: 0,
+      download: 0
     }
   }
   async upload(acceptedFiles) {
@@ -18,27 +22,34 @@ class FileDrop extends Component {
       // only accept one file
       const file = acceptedFiles[0]
 
-      // add file to form data
-      const formData = new FormData()
-      formData.append('document', file)
-
       // convert file on server
-      const response = await fetch('https://us-central1-spare-page.cloudfunctions.net/parse', {
-        method: 'POST',
-        body: formData
+      const newFile = await new Promise((resolve, reject) => {
+        request
+          .post('https://us-central1-spare-page.cloudfunctions.net/parse')
+          .responseType('blob')
+          .attach('document', file)
+          .on('progress', (event) => {
+            this.setState({ [event.direction]: event.percent })
+          })
+          .end((err, res) => {
+            err ? reject(err) : resolve(res.body)
+          })
       })
 
       // force download of new file
-      download(await response.blob(), file.name)
+      download(newFile, file.name)
 
       // unlock uploader
-      this.setState({ lock: false })
+      this.setState({ lock: false, upload: 0, download: 0 })
     }
   }
   render() {
     return (
       <Dropzone onDrop={this.upload} multiple={false} accept="application/pdf">
-        {this.state.lock ? 'loading' : 'ready'}
+        <Progress
+          loading={this.state.lock}
+          progress={(this.state.upload + this.state.download) / 2}
+        />
       </Dropzone>
     )
   }
