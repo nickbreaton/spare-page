@@ -1,5 +1,5 @@
 import Content from './Content'
-import Drop from './Drop'
+import FileDrop from './FileDrop'
 import Footer from './Footer'
 import Header from './Header'
 import Page from './Page'
@@ -12,7 +12,7 @@ const App = () => (
       <Title>SparePage</Title>
     </Header>
     <Content>
-      <Drop/>
+      <FileDrop/>
     </Content>
     <Footer/>
   </Page>

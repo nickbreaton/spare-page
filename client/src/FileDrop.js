@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import download from 'downloadjs'
 
-class Drop extends Component {
+class FileDrop extends Component {
   constructor() {
     super()
     this.upload = this.upload.bind(this)
@@ -39,10 +39,9 @@ class Drop extends Component {
     return (
       <Dropzone onDrop={this.upload} multiple={false} accept="application/pdf">
         {this.state.lock ? 'loading' : 'ready'}
-        {this.props.children}
       </Dropzone>
     )
   }
 }
 
-export default Drop
+export default FileDrop
