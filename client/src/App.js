@@ -1,9 +1,10 @@
-import React from 'react'
 import Content from './Content'
+import Drop from './Drop'
 import Footer from './Footer'
 import Header from './Header'
-import Title from './Title'
 import Page from './Page'
+import React from 'react'
+import Title from './Title'
 
 const App = () => (
   <Page>
@@ -11,11 +12,9 @@ const App = () => (
       <Title>SparePage</Title>
     </Header>
     <Content>
-      test
+      <Drop/>
     </Content>
-    <Footer>
-      
-    </Footer>
+    <Footer/>
   </Page>
 )
 

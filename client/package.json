@@ -21,8 +21,11 @@
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
+    "downloadjs": "^1.4.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-dropzone": "^3.10.0",
+    "regenerator-runtime": "^0.10.3",
     "styled-components": "^1.4.4"
   }
 }

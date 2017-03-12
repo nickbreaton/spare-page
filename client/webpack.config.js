@@ -5,6 +5,7 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: [
+    'regenerator-runtime/runtime',
     resolve(__dirname, 'src/index.js'),
   ],
   output: {
