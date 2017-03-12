@@ -1,10 +1,13 @@
 import createTemp from './create-temp'
+import enableCors from './enable-cors'
 import insertPages from './insert-pages'
 import middleware from './middleware'
 import saveUpload from './save-upload'
 import validateRequest from './validate-request'
 
 export default async function (req, res) {
+  // enable CORS
+  enableCors(res)
   // include express middleware
   await middleware(req, res)
   // fetch a temporary file
