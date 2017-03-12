@@ -5,5 +5,5 @@ import app from './src'
 const server = express()
 
 // start development server
-server.use(func)
+server.use(app)
 server.listen(8080)
