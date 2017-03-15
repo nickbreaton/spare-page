@@ -1,17 +1,22 @@
 import download from 'downloadjs'
 import Dropzone from 'react-dropzone'
-import Status from './Status'
+import Status from './status/Status'
 import React, { Component } from 'react'
 import request from 'superagent'
 
 class FileDrop extends Component {
   constructor() {
     super()
+
+    // bind functionss
+    this.enter = this.enter.bind(this)
+    this.leave = this.leave.bind(this)
     this.upload = this.upload.bind(this)
+
+    // set initial state
     this.state = {
       lock: false,
-      upload: 0,
-      download: 0
+      fileOver: false
     }
   }
   async upload(acceptedFiles) {
@@ -28,9 +33,6 @@ class FileDrop extends Component {
           .post('https://us-central1-spare-page.cloudfunctions.net/parse')
           .responseType('blob')
           .attach('document', file)
-          .on('progress', (event) => {
-            this.setState({ [event.direction]: event.percent })
-          })
           .end((err, res) => {
             err ? reject(err) : resolve(res.body)
           })
@@ -43,12 +45,28 @@ class FileDrop extends Component {
       this.setState({ lock: false, upload: 0, download: 0 })
     }
   }
+  enter() {
+    this.setState({
+      fileOver: true
+    })
+  }
+  leave() {
+    this.setState({
+      fileOver: false
+    })
+  }
   render() {
     return (
-      <Dropzone onDrop={this.upload} multiple={false} accept="application/pdf">
+      <Dropzone
+        onDrop={this.upload}
+        onDragEnter={this.enter}
+        onDragLeave={this.leave}
+        multiple={false}
+        accept="application/pdf"
+      >
         <Status
           loading={this.state.lock}
-          progress={(this.state.upload + this.state.download) / 2}
+          fileOver={this.state.fileOver}
         />
       </Dropzone>
     )

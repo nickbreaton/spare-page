@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const Upload = styled.div`
   width: 12em;
   height: 12em;
   opacity: 0.15;
-  transition: 0.25s linear;
+  transition: 0.15s linear;
 
   &::before,
   &::after {
@@ -13,7 +12,7 @@ const Upload = styled.div`
     content: '';
     background: url(upload.svg);
     background-size: 100%;
-    transition: 0.25s linear;
+    transition: 0.15s linear;
   }
 
   &::before {
@@ -21,31 +20,18 @@ const Upload = styled.div`
     background-position: top;
   }
 
-  &:hover::before {
-    transform: translateY(-7.5%);
-  }
-
   &::after {
     height: 30%;
     background-position: bottom;
   }
 
-  &:hover {
+  &.active {
     opacity: 0.1;
   }
-`
 
-const BottomUpload = styled(Upload)`
-  flex-grow: 1;
-  background-position: bottom;
-`
-
-class Status extends Component {
-  render() {
-    return (
-      <Upload/>
-    )
+  &.active::before {
+    transform: translateY(-7.5%);
   }
-}
+`
 
-export default Status
+export default Upload
