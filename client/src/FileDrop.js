@@ -1,6 +1,6 @@
 import download from 'downloadjs'
 import Dropzone from 'react-dropzone'
-import Progress from './Progress'
+import Status from './Status'
 import React, { Component } from 'react'
 import request from 'superagent'
 
@@ -46,7 +46,7 @@ class FileDrop extends Component {
   render() {
     return (
       <Dropzone onDrop={this.upload} multiple={false} accept="application/pdf">
-        <Progress
+        <Status
           loading={this.state.lock}
           progress={(this.state.upload + this.state.download) / 2}
         />
