@@ -16,7 +16,9 @@ class FileDrop extends Component {
     // set initial state
     this.state = {
       lock: false,
-      fileOver: false
+      fileOver: false,
+      upload: 0,
+      download: 0
     }
   }
   async upload(acceptedFiles) {
@@ -33,6 +35,9 @@ class FileDrop extends Component {
           .post('https://us-central1-spare-page.cloudfunctions.net/parse')
           .responseType('blob')
           .attach('document', file)
+          .on('progress', (event) => {
+            this.setState({ [event.direction]: event.percent })
+          })
           .end((err, res) => {
             err ? reject(err) : resolve(res.body)
           })
@@ -67,6 +72,8 @@ class FileDrop extends Component {
         <Status
           loading={this.state.lock}
           fileOver={this.state.fileOver}
+          upload={this.state.upload}
+          download={this.state.download}
         />
       </Dropzone>
     )

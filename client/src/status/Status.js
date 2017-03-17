@@ -24,17 +24,16 @@ class Status extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    // change in props or loading
+    // animate top arrow when file is over drop area
     if (this.props.fileOver !== nextProps.fileOver || nextProps.loading) {
-      // offset if file over and not loading
       const offset = (nextProps.fileOver && !nextProps.loading) ? -1 : 0
-      SVG.adopt(this.refs.arrow).stop().animate(250).translate(0, offset)
+      SVG.adopt(this.refs.arrow).stop().animate(100).translate(0, offset)
     }
 
-    // change in loading state
-    if (this.props.loading !== nextProps.loading) {
-      SVG.adopt(this.refs.color).stop().animate(500).attr({ y: 0 })
-    }
+    // animate loading progress
+    SVG.adopt(this.refs.color).stop().animate(250).attr({
+      y: SIZE - (SIZE * (nextProps.upload / 100))
+    })
   }
   render() {
     return (
