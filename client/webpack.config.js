@@ -19,6 +19,11 @@ module.exports = {
   performance: {
     hints: false
   },
+  resolve: {
+    alias: {
+      'snapsvg': 'snapsvg-cjs'
+    }
+  },
   module: {
     rules: [
       {
