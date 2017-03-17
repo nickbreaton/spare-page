@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Center from './Center'
 import styled from 'styled-components'
-import Snap from 'snapsvg'
+import SVG from 'svg.js'
 
 const Styles = styled.div`
   display: inline-block;
@@ -21,12 +21,12 @@ class Status extends Component {
     if (this.props.fileOver !== nextProps.fileOver || nextProps.loading) {
       // offset if file over and not loading
       const offset = (nextProps.fileOver && !nextProps.loading) ? -1 : 0
-      Snap(this.refs.arrow).animate({ transform: `translate(0, ${offset})` }, 100)
+      SVG.adopt(this.refs.arrow).stop().animate(250).translate(0, offset)
     }
 
     // change in loading state
     if (this.props.loading !== nextProps.loading) {
-      Snap(this.refs.color).animate({ y: 0 }, 1000)
+      SVG.adopt(this.refs.color).stop().animate(500).attr({ y: 0 })
     }
   }
   render() {

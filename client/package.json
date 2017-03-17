@@ -26,8 +26,8 @@
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.10.0",
     "regenerator-runtime": "^0.10.3",
-    "snapsvg-cjs": "0.0.4",
     "styled-components": "^1.4.4",
-    "superagent": "^3.5.0"
+    "superagent": "^3.5.0",
+    "svg.js": "^2.5.0"
   }
 }
