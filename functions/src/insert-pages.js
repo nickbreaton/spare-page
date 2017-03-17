@@ -15,7 +15,7 @@ export default function (path, res) {
   const writer = hummus.createWriter(new hummus.PDFStreamForResponse(res))
 
   // insert blank page at every other iteration, except last
-  for (let i = 0; i < boxes.length * 2 - 1; i++) {
+  for (let i = 0; i < boxes.length * 2; i++) {
     // use current index (even) or last index (odd)
     const pageIndex = Math.floor(i / 2)
     const page = writer.createPage(...boxes[pageIndex])
