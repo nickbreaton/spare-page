@@ -6,11 +6,7 @@ class Status extends Component {
   render() {
     return (
       <Center>
-        <Upload
-          hover={this.props.fileOver}
-          loading={this.props.loading}
-          status={this.props.upload}
-        />
+        <Upload/>
       </Center>
     )
   }
