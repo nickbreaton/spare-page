@@ -1,25 +1,37 @@
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { resolve } = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
-module.exports = {
-  entry: [
+module.exports = function (env = {}) {
+  const config = {}
+
+  // ENTRY
+  config.entry = [
     'regenerator-runtime/runtime',
     resolve(__dirname, 'src/index.js'),
-  ],
-  output: {
+  ]
+
+  // OUTPUT
+  config.output = {
     filename: 'index.js',
     path: resolve(__dirname, 'dist'),
     publicPath: '/'
-  },
-  devServer: {
+  }
+
+  // DEVELOPMENT SERVER
+  config.devServer = {
     historyApiFallback: true
-  },
-  performance: {
+  }
+
+  // PERFORMANCE
+  config.performance = {
     hints: false
-  },
-  module: {
+  }
+
+  // RULES
+  config.module = {
     rules: [
       {
         test: /\.js$/,
@@ -31,8 +43,10 @@ module.exports = {
         use: 'json-loader'
       }
     ]
-  },
-  plugins: [
+  }
+
+  // PLUGINS
+  config.plugins = [
     new CopyWebpackPlugin([
       { from: 'public' }
     ]),
@@ -45,4 +59,11 @@ module.exports = {
       template: 'src/index.html'
     })
   ]
+
+  // ANALYZE MODE
+  if (env.analyze) {
+    config.plugins.push(new BundleAnalyzerPlugin())
+  }
+
+  return config;
 }
