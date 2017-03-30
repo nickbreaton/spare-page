@@ -4,8 +4,7 @@ import styled from 'styled-components'
 
 class Spinner extends Component {
   static propTypes = {
-    start: PropTypes.number,
-    end: PropTypes.number
+    progress: PropTypes.number
   }
   componentDidMount() {
     // caclulate dimentions
@@ -23,7 +22,7 @@ class Spinner extends Component {
     this.background
       .fill('none')
       .move(this.stroke, this.stroke)
-      .stroke({ color: 'white', width: this.stroke })
+      .stroke({ width: this.stroke })
 
     // create a copy of generic circle
     this.progress = this.background.clone()
@@ -38,11 +37,13 @@ class Spinner extends Component {
       .attr('stroke-dashoffset', this.circumference)
       .attr('stroke-linecap', 'round')
       .rotate(-90)
-
-    // tmp
+  }
+  componentDidUpdate() {
+    // animate progress on change
     this.progress
-      .animate(3500)
-      .attr('stroke-dashoffset', 0)
+      .stop()
+      .animate(500)
+      .attr('stroke-dashoffset', ((100 - this.props.progress) / 100 * this.circumference))
   }
   render() {
     return (
@@ -73,6 +74,10 @@ const Styles = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+  }
+
+  & > :first-child circle {
+    stroke: ${props => props.theme.colors.main};
   }
 `
 
