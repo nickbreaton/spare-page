@@ -65,5 +65,5 @@ module.exports = function (env = {}) {
     config.plugins.push(new BundleAnalyzerPlugin())
   }
 
-  return config;
+  return config
 }
