@@ -2,14 +2,11 @@ import React, { Component } from 'react'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 
 class Styles extends Component {
-  constructor() {
-    super()
-    this.theme = {
-      colors: {
-        accent: '#BAD3F7',
-        error: '#E74C3C',
-        main: '#3A7CF3'
-      }
+  theme = {
+    colors: {
+      accent: '#BAD3F7',
+      error: '#E74C3C',
+      main: '#3A7CF3'
     }
   }
   componentWillMount() {
