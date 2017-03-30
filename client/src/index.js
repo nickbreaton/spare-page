@@ -1,14 +1,8 @@
-import request from 'superagent'
-import download from 'downloadjs'
+import App from './components/App'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-document.querySelector('input').addEventListener('change', (e) => {
-  console.log('Uploading...')
-  request
-    .post('/parse')
-    .responseType('blob')
-    .attach('document', e.target.files[0])
-    .end((err, res) => {
-      console.log('Downloading...')
-      download(res.body, 'download.pdf')
-    })
-})
+const mount = document.getElementById('app')
+const app = React.createElement(App, null)
+
+ReactDOM.render(app, mount)
