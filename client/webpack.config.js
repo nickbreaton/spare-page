@@ -22,7 +22,12 @@ module.exports = function (env = {}) {
 
   // DEVELOPMENT SERVER
   config.devServer = {
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/parse': {
+        target: 'http://localhost:8081'
+      }
+    }
   }
 
   // PERFORMANCE

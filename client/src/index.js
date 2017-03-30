@@ -1,14 +1,14 @@
-import { injectGlobal } from 'styled-components'
-import App from './App'
-import React from 'react'
-import ReactDOM from 'react-dom'
+import request from 'superagent'
+import download from 'downloadjs'
 
-ReactDOM.render(<App/>, document.querySelector('#app'))
-
-injectGlobal`
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-`
+document.querySelector('input').addEventListener('change', (e) => {
+  console.log('Uploading...')
+  request
+    .post('/parse')
+    .responseType('blob')
+    .attach('document', e.target.files[0])
+    .end((err, res) => {
+      console.log('Downloading...')
+      download(res.body, 'download.pdf')
+    })
+})
