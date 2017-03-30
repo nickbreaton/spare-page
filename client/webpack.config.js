@@ -46,6 +46,10 @@ module.exports = function (env = {}) {
       {
         test: /\.json$/,
         use: 'json-loader'
+      },
+      {
+        test: /\.svg$/,
+        use: ['babel-loader', 'svg-react-loader']
       }
     ]
   }
