@@ -11,7 +11,7 @@ const Dropzone = styled.div`
   flex-direction: column;
   font-size: 1.25em;
   font-weight: bold;
-  height: calc(100% - 4em);
+  height: 12em;
   justify-content: center;
   margin: 2em;
   width: calc(100% - 4em);
