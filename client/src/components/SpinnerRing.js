@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SVG from 'svg.js'
 
-class Ring extends Component {
+class SpinnerRing extends Component {
   componentDidMount() {
     // caclulate dimentions
     this.stroke = 10
@@ -72,4 +72,4 @@ class Ring extends Component {
   }
 }
 
-export default Ring
+export default SpinnerRing
