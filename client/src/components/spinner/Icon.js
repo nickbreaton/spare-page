@@ -1,34 +1,36 @@
-import Arrow from '../../../assets/icons/arrow.svg'
-import Pending from '../../../assets/icons/pending.svg'
-import Tick from '../../../assets/icons/tick.svg'
 import styled from 'styled-components'
 import React from 'react'
 
 export default (props) => {
-  const Icon = () => {
-    if (props.complete) {
-      return styled(Tick)`
-        transform: scale(0.6);
-      `
-    }
-    if (props.pending) {
-      return styled(Pending)`
-        transform: scale(0.5);
-      `
-    }
-    if (props.downloading || props.uploading) {
-      return styled(Arrow)`
-        transform: rotate(${props.downloading ? 180 : 0}deg);
-      `
-    }
-    return <div/>
+  let Icon = ( <svg/> )
+
+  // per icon styles
+
+  if (props.complete) {
+    Icon = styled(require('../../../assets/icons/tick.svg'))`
+      transform: scale(0.6);
+    `
   }
 
-  const StyledIcon = styled(Icon())`
-    g {
+  if (props.pending) {
+    Icon = styled(require('../../../assets/icons/pending.svg'))`
+      transform: scale(0.5);
+    `
+  }
+
+  if (props.downloading || props.uploading) {
+    Icon = styled(require('../../../assets/icons/arrow.svg'))`
+      transform: rotate(${props.downloading ? 180 : 0}deg);
+    `
+  }
+
+  // common icon styles
+
+  Icon = styled(Icon)`
+    path, g {
       fill: white;
     }
   `
 
-  return <StyledIcon/>
+  return ( <Icon/> )
 }
