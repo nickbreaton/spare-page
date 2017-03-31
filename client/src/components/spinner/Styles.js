@@ -7,7 +7,7 @@ export default styled.div`
   height: 2.25em;
   align-items: center;
   justify-content: center;
-  margin: 0.5em;
+  margin-right: 0.5em;
 
   & > :first-child {
     position: absolute;

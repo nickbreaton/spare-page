@@ -33,13 +33,29 @@ class Ring extends Component {
       .attr('stroke-dashoffset', this.getPercentage())
       .attr('stroke-linecap', 'round')
       .rotate(-90)
+
+    this.componentDidUpdate(this.props)
   }
-  componentDidUpdate() {
-    // animate progress on change
-    this.progress
-      .stop()
-      .animate(500)
-      .attr('stroke-dashoffset', this.getPercentage())
+  componentDidUpdate(prevProps) {
+    if (this.props.complete) {
+      this.progress
+        .stop()
+        .attr('stroke-dashoffset', 0)
+    }
+    if (this.props.pending) {
+      this.progress
+        .stop()
+        .attr('stroke-dashoffset', this.circumference * .3)
+        .animate(1500)
+        .rotate(360 - 90)
+        .loop()
+    }
+    if (this.props.uploading || this.props.downloading) {
+      this.progress
+        .stop()
+        .animate(500)
+        .attr('stroke-dashoffset', this.getPercentage())
+    }
   }
   getPercentage() {
     return ((100 - this.props.progress) / 100 * this.circumference)

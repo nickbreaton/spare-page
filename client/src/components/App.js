@@ -10,11 +10,14 @@ const App = () => (
     <Card>
       <Dropzone>
         <UploadIcon/>
-        Drag PDFs to convert
+        <span>
+          Drop PDFs to insert pages
+        </span>
       </Dropzone>
-      <File progress={30} name="homework1.pdf" uploading/>
-      <File progress={0}  name="election_results.pdf" pending/>
-      <File progress={89} name="syllabus.pdf" downloading/>
+      <File name="homework1.pdf" uploading progress={30}/>
+      <File name="election_results.pdf" complete/>
+      <File name="syllabus.pdf" downloading progress={89}/>
+      <File name="schedule.pdf" pending/>
     </Card>
   </Styles>
 )
