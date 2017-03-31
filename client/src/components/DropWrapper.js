@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Dropzone = styled.div`
+const Drop = styled.div`
   align-items: center;
   background-color: ${props => props.theme.colors.accent};
   border-radius: inherit;
@@ -15,6 +15,7 @@ const Dropzone = styled.div`
   justify-content: center;
   margin: 2em;
   width: calc(100% - 4em);
+  opacity: ${props => props.active ? 0.5 : 1};
 
   & > svg {
     fill: ${props => props.theme.colors.main};
@@ -22,4 +23,4 @@ const Dropzone = styled.div`
   }
 `
 
-export default Dropzone
+export default Drop
