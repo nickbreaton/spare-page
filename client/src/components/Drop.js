@@ -27,7 +27,7 @@ class Drop extends Component {
     return (
       <Dropzone
         accept="application/pdf"
-        style={{ borderRadius: 'inherit' }}
+        style={{}}
         onDrop={this.handleDrop}
         onDragEnter={this.handleEnter}
         onDragLeave={this.handleLeave}
