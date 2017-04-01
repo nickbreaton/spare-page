@@ -5,7 +5,14 @@ import File from './File'
 class FileManager extends Component {
   render() {
     const files = this.props.files.map((file, i) => (
-      <File {...file} key={file.name}/>
+      <File
+        {...file}
+        key={file.uuid}
+        onCancel={() => this.props.dispatch({
+          type: 'DELETE_FILE',
+          payload: file
+        })}
+      />
     ))
     return (
       <div>

@@ -1,3 +1,4 @@
+import { connect } from 'react-redux'
 import DropWrapper from './DropWrapper'
 import Dropzone from 'react-dropzone'
 import React, { Component } from 'react'
@@ -20,8 +21,15 @@ class Drop extends Component {
   handleDrop = (acceptedFiles, rejectedFiles) => {
     this.handleLeave()
 
-    // tmp
-    console.log(acceptedFiles, rejectedFiles)
+    acceptedFiles.forEach(file => {
+      this.props.dispatch({
+        type: 'UPLOAD_FILE',
+        payload: {
+          name: file.name,
+          raw: file
+        }
+      })
+    })
   }
   render() {
     return (
@@ -43,4 +51,4 @@ class Drop extends Component {
   }
 }
 
-export default Drop
+export default connect(state => state)(Drop)

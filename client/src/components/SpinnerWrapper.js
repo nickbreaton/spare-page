@@ -1,13 +1,18 @@
 import styled from 'styled-components'
 
+const size = '2.25em'
+
 const SpinnerWrapper = styled.div`
   align-items: center;
   display: flex;
-  height: 2.25em;
+  height: ${size};
   justify-content: center;
   margin-right: 0.5em;
   position: relative;
-  width: 2.25em;
+
+  svg {
+    width: ${size};
+  }
 
   & > :first-child {
     height: 100%;
