@@ -1,5 +1,5 @@
 import Card from './Card';
-import Drop from './Drop'
+import DropContainer from './DropContainer'
 import FileManager from './FileManager'
 import React from 'react'
 import Store from './Store'
@@ -9,7 +9,7 @@ const App = () => (
   <Store>
     <Styles>
         <Card>
-          <Drop/>
+          <DropContainer/>
           <FileManager/>
         </Card>
     </Styles>

@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { remove } from '../reducers/files'
+import { remove } from '../state/files'
 import File from './File'
 import React from 'react'
 

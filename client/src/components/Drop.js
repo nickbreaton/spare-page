@@ -1,11 +1,9 @@
+import { complete, progress, upload } from '../state/files'
 import { connect } from 'react-redux'
 import DropWrapper from './DropWrapper'
 import Dropzone from 'react-dropzone'
 import React, { Component } from 'react'
 import UploadIcon from '../../assets/icons/cloud_upload.svg'
-import request from 'superagent'
-import download from 'downloadjs'
-import uuid from 'uuid'
 
 class Drop extends Component {
   state = {
@@ -22,46 +20,11 @@ class Drop extends Component {
     })
   }
   handleDrop = (acceptedFiles, rejectedFiles) => {
+    // reset state of drop
     this.handleLeave()
-
-    acceptedFiles.forEach(file => {
-      const id = uuid.v4()
-
-      this.props.dispatch({
-        type: 'UPLOAD_FILE',
-        payload: {
-          name: file.name,
-          uuid: id
-        }
-      })
-
-      request
-        .post('/parse')
-        .responseType('blob')
-        .attach('document', file)
-        .on('progress', (event) => {
-          if (event.direction === 'upload') {
-            console.log('test');
-            this.props.dispatch({
-              type: 'UPDATE_FILE_PROGRESS',
-              payload: {
-                progress: event.percent,
-                uuid: id
-              }
-            })
-
-            if (event.percent === 100) {
-              this.props.dispatch({
-                type: 'PENDING_FILE',
-                payload: id
-              })
-            }
-          }
-        })
-        .end((err, res) => {
-          // download(res.body, 'download.pdf')
-        })
-
+    // add files dropped
+    acceptedFiles.forEach((file) => {
+      this.props.addFile(file)
     })
   }
   render() {
