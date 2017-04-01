@@ -24,6 +24,15 @@ const SpinnerWrapper = styled.div`
 
   & > :first-child circle {
     stroke: white;
+
+    @media(max-width: ${props => props.theme.breakpoint}) {
+      stroke: ${props => props.theme.colors.main};
+    }
+  }
+
+  @media(max-width: ${props => props.theme.breakpoint}) {
+    background: none;
+    color: ${props => props.theme.colors.main}
   }
 `
 

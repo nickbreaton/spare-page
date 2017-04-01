@@ -14,6 +14,13 @@ const FileWrapper = styled.div`
     border-bottom-right-radius: inherit;
     border-bottom-left-radius: inherit;
   }
+
+  @media(max-width: ${props => props.theme.breakpoint}) {
+    font-size: 1.25em;
+    background: none;
+    color: ${props => props.theme.colors.main};
+    padding-left: 1em;
+  }
 `
 
 export default FileWrapper

@@ -7,7 +7,8 @@ class Styles extends Component {
       accent: '#BAD3F7',
       error: '#E74C3C',
       main: '#3A7CF3'
-    }
+    },
+    breakpoint: '34em'
   }
   componentWillMount() {
     injectGlobal`
@@ -19,6 +20,10 @@ class Styles extends Component {
       body {
         background-color: ${this.theme.colors.accent};
         font-family: 'Varela Round';
+
+        @media(max-width: ${this.theme.breakpoint}) {
+          background-color: white;
+        }
       }
     `
   }

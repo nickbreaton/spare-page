@@ -27,6 +27,10 @@ const SpinnerIcon = (props) => {
   Icon = styled(Icon)`
     path, g {
       fill: white;
+
+      @media(max-width: ${props => props.theme.breakpoint}) {
+        fill: ${props => props.theme.colors.main};
+      }
     }
   `
 

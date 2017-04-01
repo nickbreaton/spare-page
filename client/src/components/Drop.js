@@ -36,11 +36,12 @@ class Drop extends Component {
         onDragEnter={this.handleEnter}
         onDragLeave={this.handleLeave}
       >
-        <DropWrapper active={this.state.fileOver}>
+        <DropWrapper
+          active={this.state.fileOver}
+          desktopDirections="Drop PDFs to insert pages"
+          mobileDirections="Select PDFs to insert pages"
+        >
           <UploadIcon/>
-          <span>
-            Drop PDFs to insert pages
-          </span>
         </DropWrapper>
       </Dropzone>
     )

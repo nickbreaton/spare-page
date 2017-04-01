@@ -17,9 +17,33 @@ const Drop = styled.div`
   width: calc(100% - 4em);
   opacity: ${props => props.active ? 0.5 : 1};
 
-  & > svg {
+  &::after {
+    content: '${props => props.desktopDirections}'
+  }
+
+  svg {
     fill: ${props => props.theme.colors.main};
     margin-bottom: 1em;
+  }
+
+  @media(max-width: ${props => props.theme.breakpoint}) {
+    border: none;
+    color: white;
+    margin: 1em;
+    margin-top: 0;
+    width: calc(100% - 2em);
+    height: auto;
+    padding: 1em 0.25em;
+    text-align: center;
+    background-color: ${props => props.theme.colors.main};
+
+    &::after {
+      content: '${props => props.mobileDirections}'
+    }
+
+    svg {
+      display: none;
+    }
   }
 `
 

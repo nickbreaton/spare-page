@@ -81,11 +81,9 @@ export default handleActions({
     })
   },
   [remove]: (state, action) => {
-    console.log('remove');
     return state.filter(file => file.uuid !== action.payload)
   },
   [upload]: (state, action) => {
-    console.log('upload');
     const addition = {
       name: action.payload.name,
       uuid: action.payload.uuid,

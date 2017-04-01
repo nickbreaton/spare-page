@@ -23,10 +23,18 @@ const FileButtons = styled.a`
     &:hover {
       opacity: 0.75;
     }
+
+    @media(max-width: ${props => props.theme.breakpoint}) {
+      background: ${props => props.theme.colors.main};
+    }
   }
 
   g {
     fill: ${props => props.theme.colors.main};
+
+    @media(max-width: ${props => props.theme.breakpoint}) {
+      fill: white;
+    }
   }
 `
 

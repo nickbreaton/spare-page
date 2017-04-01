@@ -7,12 +7,18 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   margin: 14vh auto;
-  max-width: 30em;
+  max-width: calc(${props => props.theme.breakpoint} - 4em);
   width: 100%;
   position: relative;
 
   & > div {
     border-radius: inherit;
+  }
+
+  @media(max-width: ${props => props.theme.breakpoint}) {
+    max-width: 100%;
+    box-shadow: none;
+    margin: 2em 0;
   }
 `
 
