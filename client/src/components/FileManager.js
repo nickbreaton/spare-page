@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import File from './File'
+import { remove } from '../reducers/files'
 
 class FileManager extends Component {
   render() {
@@ -8,10 +9,7 @@ class FileManager extends Component {
       <File
         {...file}
         key={file.uuid}
-        onCancel={() => this.props.dispatch({
-          type: 'DELETE_FILE',
-          payload: file
-        })}
+        onCancel={() => this.props.dispatch(remove(file.uuid))}
       />
     ))
     return (

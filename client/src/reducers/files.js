@@ -1,41 +1,9 @@
-export default function (state = [], { type, payload }) {
-  if (type === 'DELETE_FILE') {
-    return state.filter(file => file.uuid !== payload.uuid)
+import { createAction, handleActions } from 'redux-actions'
+
+export const remove = createAction('FILE_REMOVE')
+
+export default handleActions({
+  [remove]: (state, action) => {
+    return state.filter(file => file.uuid !== action.payload)
   }
-  if (type === 'UPLOAD_FILE') {
-    return [{
-      complete: false,
-      data: null,
-      downloading: false,
-      name: payload.name,
-      pending: false,
-      progress: 0,
-      uploading: true,
-      uuid: payload.uuid,
-    }, ...state]
-  }
-  if (type === 'UPDATE_FILE_PROGRESS') {
-    return state.map(file => {
-      if (file.uuid !== payload.uuid) {
-        return file
-      }
-      return {
-        ...file,
-        progress: payload.progress
-      }
-    })
-  }
-  if (type === 'PENDING_FILE') {
-    return state.map(file => {
-      if (file.uuid !== payload) {
-        return file
-      }
-      return {
-        ...file,
-        pending: true,
-        uploading: false
-      }
-    })
-  }
-  return state
-}
+}, [ { name: 'default_file.pdf', uuid: 0, uploading: true, progress: 63 } ])
