@@ -44,7 +44,7 @@ class SpinnerRing extends Component {
     }
     if (this.props.pending) {
       this.progress
-        .stop()
+        .animate(1)
         .attr('stroke-dashoffset', this.circumference * .3)
         .animate(1500)
         .rotate(360 - 90)
