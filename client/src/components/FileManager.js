@@ -1,23 +1,31 @@
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import React, { Component } from 'react'
-import File from './File'
 import { remove } from '../reducers/files'
+import File from './File'
+import React from 'react'
 
-class FileManager extends Component {
-  render() {
-    const files = this.props.files.map((file, i) => (
-      <File
-        {...file}
-        key={file.uuid}
-        onCancel={() => this.props.dispatch(remove(file.uuid))}
-      />
-    ))
-    return (
-      <div>
-        {files}
-      </div>
-    )
-  }
-}
+const FileManager = (props) => (
+  <div>
+    {mapFilesToComponents(props)}
+  </div>
+)
 
-export default connect(state => state)(FileManager)
+const mapFilesToComponents = ({ files, remove }) => (
+  files.map((file) => (
+    <File
+      {...file}
+      key={file.uuid}
+      onCancel={() => remove(file.uuid)}
+    />
+  ))
+)
+
+const mapStateToProps = (state) => (
+  { files: state.files }
+)
+
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({ remove }, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(FileManager)
