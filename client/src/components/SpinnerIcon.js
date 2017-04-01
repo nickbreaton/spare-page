@@ -18,10 +18,8 @@ const SpinnerIcon = (props) => {
     `
   }
 
-  if (props.downloading || props.uploading) {
-    Icon = styled(require('../../assets/icons/arrow.svg'))`
-      transform: rotate(${props.downloading ? 180 : 0}deg);
-    `
+  if (props.uploading) {
+    Icon = require('../../assets/icons/arrow.svg')
   }
 
   // common icon styles

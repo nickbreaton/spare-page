@@ -9,7 +9,6 @@ class Spinner extends Component {
     progress: PropTypes.number,
     complete: PropTypes.bool,
     pending: PropTypes.bool,
-    downloading: PropTypes.bool,
     uploading: PropTypes.bool
   }
   static defaultProps = {

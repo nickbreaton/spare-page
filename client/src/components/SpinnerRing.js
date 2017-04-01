@@ -50,7 +50,7 @@ class SpinnerRing extends Component {
         .rotate(360 - 90)
         .loop()
     }
-    if (this.props.uploading || this.props.downloading) {
+    if (this.props.uploading) {
       this.progress
         .stop()
         .animate(500)

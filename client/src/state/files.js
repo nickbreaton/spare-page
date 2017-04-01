@@ -56,7 +56,7 @@ export default handleActions({
       }
       return {
         ...file,
-        downloading: false,
+        pending: false,
         complete: true
       }
     })
@@ -66,22 +66,12 @@ export default handleActions({
       if (file.uuid !== action.payload.uuid) {
         return file
       }
-      if (file.uploading && action.payload.percent === 100) {
-        console.log('switch to uploading');
+      if (action.payload.percent === 100) {
         return {
           ...file,
           progress: 100,
           uploading: false,
           pending: true
-        }
-      }
-      if (file.pending) {
-        console.log('switch to downlading');
-        return {
-          ...file,
-          pending: false,
-          downloading: true,
-          percent: action.payload.percent
         }
       }
       return {
@@ -99,7 +89,6 @@ export default handleActions({
     const addition = {
       name: action.payload.name,
       uuid: action.payload.uuid,
-      downloading: false,
       pending: false,
       uploading: true,
       complete: false
