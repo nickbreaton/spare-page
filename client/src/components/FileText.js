@@ -6,6 +6,7 @@ const FileText = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  user-select: none;
 `
 
 export default FileText
