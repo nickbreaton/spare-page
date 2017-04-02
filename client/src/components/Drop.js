@@ -36,7 +36,13 @@ class Drop extends Component {
       >
         <Dropzone
           accept="application/pdf"
-          style={{ width: '100%', height: '100%', position: 'absolute' }}
+          style={{
+            top: '0',
+            bottom: '0',
+            width: '100%',
+            height: '100%',
+            position: 'absolute'
+          }}
           onDrop={this.handleDrop}
           onDragEnter={this.handleEnter}
           onDragLeave={this.handleLeave}
