@@ -40,7 +40,11 @@ export const add = (file) => {
     dispatch(upload(uuid, file.name))
     // send file to server
     request
-      .post('/parse')
+      .post(
+        process.env.NODE_ENV === 'production' 
+          ? 'https://us-central1-spare-page.cloudfunctions.net/parse'
+          : '/parse'
+      )
       .responseType('blob')
       .attach('document', file)
       .on('progress', (event) => {
@@ -58,8 +62,6 @@ export const add = (file) => {
       })
   }
 }
-
-
 
 // REDUCER
 
