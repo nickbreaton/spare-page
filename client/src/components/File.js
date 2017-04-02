@@ -1,5 +1,4 @@
-import CloseIcon from '../../assets/icons/close.svg'
-import DownloadIcon from '../../assets/icons/arrow_down.svg'
+import FileButton from './FileButton'
 import FileButtons from './FileButtons'
 import FileText from './FileText'
 import FileWrapper from './FileWrapper'
@@ -16,8 +15,8 @@ class File extends Component {
           {this.props.name}
         </FileText>
         <FileButtons complete={this.props.complete}>
-          <DownloadIcon/>
-          <CloseIcon onClick={this.props.onCancel}/>
+          <FileButton download/>
+          <FileButton close onClick={this.props.onCancel}/>
         </FileButtons>
       </FileWrapper>
     )
