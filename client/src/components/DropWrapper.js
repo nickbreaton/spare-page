@@ -16,6 +16,7 @@ const Drop = styled.div`
   margin: 2em;
   width: calc(100% - 4em);
   opacity: ${props => props.active ? 0.5 : 1};
+  position: relative;
 
   &::after {
     content: '${props => props.desktopDirections}'

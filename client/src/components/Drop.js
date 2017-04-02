@@ -29,21 +29,20 @@ class Drop extends Component {
   }
   render() {
     return (
-      <Dropzone
-        accept="application/pdf"
-        style={{}}
-        onDrop={this.handleDrop}
-        onDragEnter={this.handleEnter}
-        onDragLeave={this.handleLeave}
+      <DropWrapper
+        active={this.state.fileOver}
+        desktopDirections="Drop PDFs to insert pages"
+        mobileDirections="Select PDFs to insert pages"
       >
-        <DropWrapper
-          active={this.state.fileOver}
-          desktopDirections="Drop PDFs to insert pages"
-          mobileDirections="Select PDFs to insert pages"
-        >
-          <UploadIcon/>
-        </DropWrapper>
-      </Dropzone>
+        <Dropzone
+          accept="application/pdf"
+          style={{ width: '100%', height: '100%', position: 'absolute' }}
+          onDrop={this.handleDrop}
+          onDragEnter={this.handleEnter}
+          onDragLeave={this.handleLeave}
+        />
+        <UploadIcon/>
+      </DropWrapper>
     )
   }
 }

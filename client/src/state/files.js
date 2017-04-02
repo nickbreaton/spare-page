@@ -49,7 +49,6 @@ export const add = (file) => {
 
 export default handleActions({
   [complete]: (state, action) => {
-    console.log('complete');
     return state.map((file) => {
       if (file.uuid !== action.payload) {
         return file
