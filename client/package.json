@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "downloadjs": "^1.4.7",
+    "localforage": "^1.5.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.10.0",

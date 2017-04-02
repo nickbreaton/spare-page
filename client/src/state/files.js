@@ -1,7 +1,8 @@
 import { createAction, handleActions } from 'redux-actions'
 import getUUID from 'uuid/v4'
 import request from 'superagent'
-import download from 'downloadjs'
+import downloadjs from 'downloadjs'
+import localforage from 'localforage'
 
 // ACTION CREATORS
 
@@ -19,12 +20,22 @@ export const upload = createAction('FILE_UPLOAD', (uuid, name) => {
 
 // ASYNC ACTION CREATORS
 
+export const download = (uuid) => {
+  return (dispatch) => {
+    localforage.getItem(uuid, function (err, value) {
+      if (value) {
+        downloadjs(value.body, value.name)
+      }
+    })
+  }
+}
+
 export const add = (file) => {
   return (dispatch) => {
     // create unique ID
     const uuid = getUUID()
     // create new file name
-    const name = file.name.replace('.pdf', ' (spare-page).pdf')
+    const name = file.name.replace(/.pdf$/, ' (spare-page).pdf')
     // start upload state
     dispatch(upload(uuid, file.name))
     // send file to server
@@ -40,10 +51,15 @@ export const add = (file) => {
         // complete
         dispatch(complete(uuid))
         // download file
-        download(res.body, name)
+        localforage.setItem(uuid, { name, body: res.body }, () => {
+          // dispatch download action
+          dispatch(download(uuid))
+        })
       })
   }
 }
+
+
 
 // REDUCER
 

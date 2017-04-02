@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { remove } from '../state/files'
+import { download, remove } from '../state/files'
 import File from './File'
 import React from 'react'
 
@@ -15,7 +15,8 @@ const mapFilesToComponents = ({ files, remove }) => (
     <File
       {...file}
       key={file.uuid}
-      onCancel={() => remove(file.uuid)}
+      download={download(file.uuid)}
+      remove={() => remove(file.uuid)}
     />
   ))
 )
@@ -25,7 +26,7 @@ const mapStateToProps = (state) => (
 )
 
 const mapDispatchToProps = (dispatch) => (
-  bindActionCreators({ remove }, dispatch)
+  bindActionCreators({ download, remove }, dispatch)
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(FileManager)
