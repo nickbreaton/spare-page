@@ -9,6 +9,10 @@ const SpinnerIcon = (props) => {
   if (props.complete) {
     Icon = styled(require('../../assets/icons/tick.svg'))`
       transform: scale(0.6);
+
+      g {
+        stroke-width: 2.5;
+      }
     `
   }
 
@@ -27,9 +31,11 @@ const SpinnerIcon = (props) => {
   Icon = styled(Icon)`
     path, g {
       fill: white;
+      stroke: white;
 
       @media(max-width: ${props => props.theme.breakpoint}) {
         fill: ${props => props.theme.colors.main};
+        stroke: ${props => props.theme.colors.main};
       }
     }
   `
