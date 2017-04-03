@@ -1,1 +1,12 @@
-{}
+{
+  "hosting": {
+    "public": "functions/dist",
+    "redirects": [
+      {
+        "source" : "**",
+        "destination" : "https://nickbreaton.github.io/spare-page/",
+        "type" : 301
+      }
+    ]
+  }
+}
