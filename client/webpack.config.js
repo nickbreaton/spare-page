@@ -76,7 +76,7 @@ module.exports = function (env = {}) {
         appleStartup: false,
         coast: false,
         favicons: true,
-        firefox: true,
+        firefox: false,
         opengraph: false,
         twitter: false,
         yandex: false,
