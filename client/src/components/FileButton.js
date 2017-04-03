@@ -38,6 +38,7 @@ const FileButton = (props) => {
     margin-right: 0.35em;
     opacity: 0.5;
     width: 1.25em;
+    visibility: ${props => props.active ? 'visible' : 'hidden'};
 
     &:hover {
       opacity: 1;
@@ -68,7 +69,7 @@ const FileButton = (props) => {
   `
 
   return (
-    <Wrapper onClick={props.onClick}>
+    <Wrapper active={props.active} onClick={props.onClick}>
       <Button/>
     </Wrapper>
   )

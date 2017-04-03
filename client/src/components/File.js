@@ -15,8 +15,8 @@ class File extends Component {
           {this.props.name}
         </FileText>
         <FileButtons complete={this.props.complete}>
-          <FileButton download onClick={this.props.download}/>
-          <FileButton close onClick={this.props.remove}/>
+          <FileButton download active={this.props.complete} onClick={this.props.download}/>
+          <FileButton close active onClick={this.props.remove}/>
         </FileButtons>
       </FileWrapper>
     )
