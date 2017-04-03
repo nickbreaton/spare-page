@@ -22,6 +22,18 @@ class Drop extends Component {
   handleDrop = (acceptedFiles, rejectedFiles) => {
     // reset state of drop
     this.handleLeave()
+    // check for too many files
+    if (acceptedFiles.length + rejectedFiles.length > 3) {
+      this.props.throwError('You may not upload more than three files at once.', 4000)
+      return
+    }
+    // check for invalid files
+    for (let file of rejectedFiles) {
+      if (file.type !== 'application/pdf') {
+        this.props.throwError('All files must be in a PDF format.')
+        return
+      }
+    }
     // add files dropped
     acceptedFiles.forEach((file) => {
       this.props.addFile(file)
@@ -30,6 +42,7 @@ class Drop extends Component {
   render() {
     return (
       <DropWrapper
+        error={this.props.error}
         active={this.state.fileOver}
         desktopDirections="Drop PDFs to insert pages"
         mobileDirections="Select PDFs to insert pages"
