@@ -21,12 +21,14 @@ export const upload = createAction('FILE_UPLOAD', (uuid, name) => {
 // ASYNC ACTION CREATORS
 
 export const download = (uuid) => {
-  return (dispatch) => {
-    localforage.getItem(uuid, function (err, value) {
-      if (value) {
-        downloadjs(value.body, value.name)
-      }
-    })
+  return (dispatch, getState) => {
+    if (getState().files.filter(files => files.uuid === uuid).length > 0) {
+      localforage.getItem(uuid, function (err, value) {
+        if (value) {
+          downloadjs(value.body, value.name)
+        }
+      })
+    }
   }
 }
 
@@ -41,7 +43,7 @@ export const add = (file) => {
     // send file to server
     request
       .post(
-        process.env.NODE_ENV === 'production' 
+        process.env.NODE_ENV === 'production'
           ? 'https://us-central1-spare-page.cloudfunctions.net/parse'
           : '/parse'
       )
