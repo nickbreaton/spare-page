@@ -7,3 +7,4 @@ A simple web application to enable single-sided printing from a double-sided pri
 __TODO__
   - Change wording
   - Write up README
+  - Wrap background in dummy drop to prevent misdrop 

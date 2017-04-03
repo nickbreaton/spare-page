@@ -6,7 +6,7 @@
     "build": "babel src -d dist",
     "prebuild": "npm run clean",
     "clean": "rimraf dist",
-    "deploy": "firebase deploy",
+    "deploy": "firebase deploy --only functions",
     "predeploy": "npm run build",
     "start": "nodemon index.dev.js --exec babel-node"
   },
