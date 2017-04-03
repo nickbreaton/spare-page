@@ -37,7 +37,7 @@ class SpinnerRing extends Component {
     this.componentDidUpdate(this.props)
   }
   componentDidUpdate(prevProps) {
-    if (this.props.complete) {
+    if (this.props.complete || this.props.error) {
       this.progress
         .stop()
         .attr('stroke-dashoffset', 0)

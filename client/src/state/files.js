@@ -8,6 +8,8 @@ import localforage from 'localforage'
 
 export const complete = createAction('FILE_COMPLETE')
 
+export const error = createAction('FILE_ERROR')
+
 export const progress = createAction('FILE_PROGRESS', (uuid, percent) => {
   return { percent, uuid }
 })
@@ -54,13 +56,18 @@ export const add = (file) => {
         dispatch(progress(uuid, event.percent || 100))
       })
       .end((err, res) => {
-        // complete
-        dispatch(complete(uuid))
-        // download file
-        localforage.setItem(uuid, { name, body: res.body }, () => {
-          // dispatch download action
-          dispatch(download(uuid))
-        })
+        if (err) {
+          // handle error
+          dispatch(error(uuid))
+        } else {
+          // complete
+          dispatch(complete(uuid))
+          // download file
+          localforage.setItem(uuid, { name, body: res.body }, () => {
+            // dispatch download action
+            dispatch(download(uuid))
+          })
+        }
       })
   }
 }
@@ -77,6 +84,19 @@ export default handleActions({
         ...file,
         pending: false,
         complete: true
+      }
+    })
+  },
+  [error]: (state, action) => {
+    return state.map((file) => {
+      if (file.uuid !== action.payload) {
+        return file
+      }
+      return {
+        ...file,
+        uploading: false,
+        pending: false,
+        error: true
       }
     })
   },

@@ -5,12 +5,6 @@ import SpinnerWrapper from './SpinnerWrapper'
 import SVG from 'svg.js'
 
 class Spinner extends Component {
-  static propTypes = {
-    progress: PropTypes.number,
-    complete: PropTypes.bool,
-    pending: PropTypes.bool,
-    uploading: PropTypes.bool
-  }
   static defaultProps = {
     progress: 0
   }

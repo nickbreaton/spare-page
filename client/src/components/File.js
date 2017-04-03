@@ -9,7 +9,7 @@ import styled from 'styled-components'
 class File extends Component {
   render() {
     return (
-      <FileWrapper>
+      <FileWrapper error={this.props.error}>
         <Spinner {...this.props}/>
         <FileText>
           {this.props.name}

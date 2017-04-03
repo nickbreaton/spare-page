@@ -16,6 +16,10 @@ const SpinnerIcon = (props) => {
     `
   }
 
+  if (props.error) {
+    Icon = require('../../assets/icons/warning.svg')
+  }
+
   if (props.pending) {
     Icon = styled(require('../../assets/icons/pending.svg'))`
       transform: scale(0.5);

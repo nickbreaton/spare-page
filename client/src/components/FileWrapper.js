@@ -9,6 +9,7 @@ const FileWrapper = styled.div`
   font-size: 1.5em;
   margin-top: 0.1em;
   padding: 0.5em;
+  opacity: ${props => props.error ? 0.5 : 1};
 
   &:last-child {
     border-bottom-right-radius: inherit;
