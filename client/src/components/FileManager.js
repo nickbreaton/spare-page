@@ -10,13 +10,13 @@ const FileManager = (props) => (
   </div>
 )
 
-const mapFilesToComponents = ({ files, remove }) => (
-  files.map((file) => (
+const mapFilesToComponents = (props) => (
+  props.files.map((file) => (
     <File
       {...file}
       key={file.uuid}
-      download={download(file.uuid)}
-      remove={() => remove(file.uuid)}
+      download={() => props.download(file.uuid)}
+      remove={() => props.remove(file.uuid)}
     />
   ))
 )
