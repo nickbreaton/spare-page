@@ -2,6 +2,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { resolve } = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = function (env = {}) {
@@ -66,6 +67,21 @@ module.exports = function (env = {}) {
         removeComments: true
       },
       template: 'src/index.html'
+    }),
+    new FaviconsWebpackPlugin({
+      logo: resolve(__dirname, 'assets/favicon/cloud_upload.png'),
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
     })
   ]
 
