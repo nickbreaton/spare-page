@@ -18,7 +18,7 @@ module.exports = function (env = {}) {
   config.output = {
     filename: 'index.js',
     path: resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: ''
   }
 
   // DEVELOPMENT SERVER
