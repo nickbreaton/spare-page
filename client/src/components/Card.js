@@ -6,19 +6,15 @@ const Card = styled.div`
   box-shadow: 0 0 1.25em -0.25em rgba(0, 0, 0, 34);
   display: flex;
   flex-direction: column;
-  margin: 14vh auto;
-  max-width: calc(${props => props.theme.breakpoint} - 4em);
-  width: 100%;
   position: relative;
+  width: 100%;
 
   & > div {
     border-radius: inherit;
   }
 
   @media(max-width: ${props => props.theme.breakpoint}) {
-    max-width: 100%;
     box-shadow: none;
-    margin: 2em 0;
   }
 `
 

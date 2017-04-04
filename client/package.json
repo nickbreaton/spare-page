@@ -1,4 +1,9 @@
 {
+  "name": "spare-page-client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickbreaton/spare-page"
+  },
   "scripts": {
     "analyze": "webpack -p --env.analyze",
     "build": "webpack -p",

@@ -1,22 +1,27 @@
 import Card from './Card';
 import DropContainer from './DropContainer'
 import DummyDrop from './DummyDrop';
+import ErrorDialog from './ErrorDialog'
 import FileManager from './FileManager'
+import Footer from './Footer';
 import React from 'react'
 import Store from './Store'
 import Styles from './Styles'
-import ErrorDialog from './ErrorDialog'
+import Main from './Main'
 
 const App = () => (
   <Store>
     <Styles>
       <DummyDrop/>
       <ErrorDialog/>
-      <Card>
-        <DummyDrop/>
-        <DropContainer/>
-        <FileManager/>
-      </Card>
+      <Main>
+        <Card>
+          <DummyDrop/>
+          <DropContainer/>
+          <FileManager/>
+        </Card>
+        <Footer/>
+      </Main>
     </Styles>
   </Store>
 )
