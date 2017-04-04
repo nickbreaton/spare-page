@@ -8,11 +8,11 @@ const Main = styled.main`
   margin: auto;
   max-width: calc(${props => props.theme.breakpoint} - 4em);
   width: 100%;
-  padding-top: 5em;
+  padding-top: 2em;
 
   @media(max-width: ${props => props.theme.breakpoint}) {
     max-width: 100%;
-    padding-top: 2em;
+    padding-top: 0em;
   }
 `
 

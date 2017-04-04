@@ -4,6 +4,7 @@ import React from 'react'
 const DummyDrop = (props) => (
   <Dropzone
     style={{
+      cursor: 'default',
       position: 'fixed',
       top: 0,
       left: 0,

@@ -44,8 +44,8 @@ class Drop extends Component {
       <DropWrapper
         error={this.props.error}
         active={this.state.fileOver}
-        desktopDirections="Drop PDFs to insert pages"
-        mobileDirections="Select PDFs to insert pages"
+        desktopDirections="Drop PDFs to make printable"
+        mobileDirections="Select PDFs to make printable"
       >
         <Dropzone
           accept="application/pdf"
