@@ -39,7 +39,7 @@ export const add = (file) => {
     // create unique ID
     const uuid = getUUID()
     // create new file name
-    const name = file.name.replace(/.pdf$/, ' (spare-page).pdf')
+    const name = file.name.replace(/.pdf$/, ' (printable).pdf')
     // start upload state
     dispatch(upload(uuid, file.name))
     // send file to server
