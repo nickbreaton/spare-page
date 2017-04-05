@@ -1,8 +1,11 @@
 import { createAction, handleActions } from 'redux-actions'
+import { saveAs } from 'file-saver'
 import getUUID from 'uuid/v4'
+import isSafari from 'is-safari'
 import request from 'superagent'
-import downloadjs from 'downloadjs'
-import localforage from 'localforage'
+
+// get unique name for window[FILES]
+const FILES = getUUID()
 
 // ACTION CREATORS
 
@@ -25,11 +28,8 @@ export const upload = createAction('FILE_UPLOAD', (uuid, name) => {
 export const download = (uuid) => {
   return (dispatch, getState) => {
     if (getState().files.filter(files => files.uuid === uuid).length > 0) {
-      localforage.getItem(uuid, function (err, value) {
-        if (value) {
-          downloadjs(value.body, value.name)
-        }
-      })
+      const file = window[FILES][uuid]
+      saveAs(file.body, file.name)
     }
   }
 }
@@ -62,11 +62,15 @@ export const add = (file) => {
         } else {
           // complete
           dispatch(complete(uuid))
-          // download file
-          localforage.setItem(uuid, { name, body: res.body }, () => {
-            // dispatch download action
+          // save file to window object
+          window[FILES] = window[FILES] || {}
+          window[FILES][uuid] = { name, body: res.body }
+          // dispatch download action
+          //  (Safari will overwrite current tab if not triggered by click event)
+          //  https://github.com/eligrey/FileSaver.js/issues/129#issuecomment-222720262
+          if (!isSafari) {
             dispatch(download(uuid))
-          })
+          }
         }
       })
   }
