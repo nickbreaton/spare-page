@@ -1,4 +1,6 @@
 .DS_Store
 *-debug.log
+*.lerna_backup
 dist
 node_modules
+yarn.lock

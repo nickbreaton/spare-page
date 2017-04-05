@@ -1,0 +1,20 @@
+{
+  "name": "spare-page",
+  "author": "Nick Breaton <nick@breaton.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickbreaton/spare-page"
+  },
+  "scripts": {
+    "start": "lerna exec -- npm run start",
+    "postinstall": "npm run yarn-install && npm run yarn-cleanup",
+    "yarn-install": "lerna exec --concurrency=1 -- yarn",
+    "yarn-cleanup": "lerna exec -- rimraf yarn.lock"
+  },
+  "devDependencies": {
+    "lerna": "2.0.0-beta.38",
+    "rimraf": "^2.6.1",
+    "yarn": "^0.21.3"
+  }
+}

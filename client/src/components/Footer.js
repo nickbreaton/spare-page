@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { repository } from '../../package.json'
+import { repository } from '../../../package.json'
 
 let Footer = (props) => (
   <footer {...props}>
