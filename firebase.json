@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "functions/dist",
+    "public": "functions/hosting",
     "redirects": [
       {
         "source" : "**",
