@@ -16,6 +16,7 @@ Header = styled(Header)`
   text-align: center;
   padding-top: 2em;
   padding-bottom: 3em;
+  width: 100%;
 
   h1 {
     color: ${props => props.theme.colors.main};

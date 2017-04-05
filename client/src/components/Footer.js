@@ -19,7 +19,6 @@ Footer = styled(Footer)`
   justify-content: center;
   padding-top: 5em;
 
-
   a {
     padding: 1em;
     z-index: 1;

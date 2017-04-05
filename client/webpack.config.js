@@ -10,6 +10,7 @@ module.exports = function (env = {}) {
 
   // ENTRY
   config.entry = [
+    'es6-symbol/implement',
     'regenerator-runtime/runtime',
     resolve(__dirname, 'src/index.js'),
   ]
