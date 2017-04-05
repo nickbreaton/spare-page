@@ -4,7 +4,7 @@ import { repository } from '../../../package.json'
 
 let Footer = (props) => (
   <footer {...props}>
-    <a href={repository.url}>
+    <a href={repository.url} target="_blank">
       {'Fork on GitHub'}
     </a>
   </footer>
