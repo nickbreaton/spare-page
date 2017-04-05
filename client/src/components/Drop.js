@@ -22,20 +22,23 @@ class Drop extends Component {
   handleDrop = (acceptedFiles, rejectedFiles) => {
     // reset state of drop
     this.handleLeave()
+    // merge all files together
+    const files = [...acceptedFiles, ...rejectedFiles]
     // check for too many files
-    if (acceptedFiles.length + rejectedFiles.length > 3) {
+    if (files.length > 3) {
       this.props.throwError('You may not upload more than three files at once.', 4000)
       return
     }
     // check for invalid files
-    for (let file of rejectedFiles) {
-      if (file.type !== 'application/pdf') {
+    for (let file of files) {
+      // some browsers (IE) are not adding a content type, so also allow no type
+      if (!(file.type === 'application/pdf' || file.type === '')) {
         this.props.throwError('All files must be in a PDF format.')
         return
       }
     }
     // add files dropped
-    acceptedFiles.forEach((file) => {
+    files.forEach((file) => {
       this.props.addFile(file)
     })
   }
@@ -48,7 +51,6 @@ class Drop extends Component {
         mobileDirections="Select PDFs to make printable"
       >
         <Dropzone
-          accept="application/pdf"
           style={{
             top: '0',
             bottom: '0',
